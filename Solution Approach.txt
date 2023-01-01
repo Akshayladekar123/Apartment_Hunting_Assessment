@@ -1,0 +1,11 @@
+1.The first thing I wanted to match was the requirement they have given in the reqs array.
+2.For every block I have to find out the farthest distance has to travel to meet all the requirements.
+3.For that I have constructed an array called 'result_arr' . 
+4.The size of the array will be equal to the rows in blocks .
+5.And each element in blocks array will represent the farthest distance has to travel to meet all the requirement.
+6.The index of  the min value in the result_arr will represent my answer.
+7.result_arr :---
+  A. first i have initialised this array with Max value.
+  B. Then for each element in the block I will travel left and right and find the min distance to meet the requirement. 
+  C. This step I have to repeat for all 3 requirement and the Max value for all three requirement will be the element in 'result_arr'.
+  D. Now the only thing which remained was to traverse the whole array and find out the index of minimum value.

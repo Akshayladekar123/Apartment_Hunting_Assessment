@@ -1,0 +1,88 @@
+blocks = [
+{
+    "gym": false,
+    "school": true,
+    "store": false,
+},
+{
+    "gym": true,
+    "school": false,
+    "store": false,
+},
+{
+    "gym": true,
+    "school": true,
+    "store": false,
+},
+{
+    "gym": false,
+    "school": true,
+    "store": false,
+},
+{
+"gym": false,
+"school": true,
+"store": true,
+}
+]
+reqs = ["gym", "school", "store"]
+
+function apartmentHunting(blocks,reqs){
+  var result_array = []
+  
+  for(let i=0;i<blocks.length;i++){
+    let available_val = Object.keys(blocks[i]).filter((item)=>{
+      return blocks[i][item] == true
+    })
+    
+    
+    let req_val = reqs.filter((item)=>{
+      return !available_val.includes(item)
+    })
+    
+    
+    let val_obj1 = {}
+    for(let j=i-1;j>=0;j--){
+      req_val.map((result)=>{
+        if(!val_obj1.hasOwnProperty(result)){
+           if(blocks[j][result] == true){
+          val_obj1[result] = j
+        } 
+        }
+      })
+    }
+    
+   
+    let val_obj2 = {}
+    for(let k=i+1;k<blocks.length;k++){
+       req_val.map((result)=>{
+         if(!val_obj2.hasOwnProperty(result)){
+              if(blocks[k][result] == true){
+          val_obj2[result] = k
+        } 
+         }
+      })
+    }
+    
+
+    
+    let dist_array = []
+    req_val.map((item)=>{
+
+       dist_array.push(Math.min(Math.abs(i-(val_obj1[item]?val_obj1[item]:12345678)),Math.abs(i-(val_obj2[item]?val_obj2[item]:12345678))))
+    })
+    
+    
+    result_array.push(Math.max(...dist_array))
+    
+  }
+  
+  return result_array.indexOf(Math.min(...result_array))
+}
+
+console.log(apartmentHunting(blocks,reqs))
+
+
+// Do not edit the line below.
+exports.apartmentHunting = apartmentHunting;
+
